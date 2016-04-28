@@ -26,7 +26,7 @@ class Lead < ActiveRecord::Base
         kind: 'edit',
         query: "#{name} linked in",
         action: 'Add the Linked In account'
-      },
+      }
     ]
   end
 

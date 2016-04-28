@@ -3,5 +3,4 @@ class LeadResource < JSONAPI::Resource
   has_many :recommendations
 
   attributes :name, :linked_in, :blog, :email, :notes
-
 end

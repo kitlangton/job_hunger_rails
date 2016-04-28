@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, length: { in: 1..200 }
   validates :password, length: { in: 8..100 }, allow_blank: true
 
-
   def score
     activities.sum :points
   end
@@ -30,5 +29,4 @@ class User < ActiveRecord::Base
   end
 
   handle_asynchronously :send_welcome_email
-
 end

@@ -90,5 +90,4 @@ class Company < ActiveRecord::Base
     end
     save
   end
-
 end
