@@ -10,7 +10,6 @@ class Company < ActiveRecord::Base
   validates :name, presence: true, length: { in: 1..100 }
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :notes, length: { maximum: 500 }
-  validates :interest, numericality: { only_integer: true }
   validates :website, :blog, :address, :glassdoor_website,
             :glassdoor_logo_link, length: { maximum: 300 }
 
