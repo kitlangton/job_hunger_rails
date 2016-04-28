@@ -47,6 +47,7 @@ class Company < ActiveRecord::Base
   end
 
   private
+  
   def make_activity
     user_id = user.id
     points = 111
@@ -71,7 +72,7 @@ class Company < ActiveRecord::Base
     action_str = 'action=employers'
 
     query_arr = [partner_str, key_str, query_str,
-                  format_str, version_str, action_str]
+                 format_str, version_str, action_str]
 
     request_string = base_string + '?' + query_arr.join('&')
     glassdoor_response = HTTParty.get(request_string)
@@ -79,14 +80,17 @@ class Company < ActiveRecord::Base
   end
 
   def validate_glassdoor_response(response)
-    unless response.nil? || response['success'] == false || response['response']['employers'].empty?
+    unless response.nil? || response['success'] == false ||
+           response['response']['employers'].empty?
       self.glassdoor_website = response['response']['employers'][0]['website']
       if website.nil?
         self.website = response['response']['employers'][0]['website']
       end
 
-      self.glassdoor_rating = response['response']['employers'][0]['overallRating'].to_f
-      self.glassdoor_logo_link = response['response']['employers'][0]['squareLogo']
+      self.glassdoor_rating = response['response']['employers']
+                                      [0]['overallRating'].to_f
+      self.glassdoor_logo_link = response['response']['employers']
+                                         [0]['squareLogo']
     end
     save
   end

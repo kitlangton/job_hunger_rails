@@ -3,5 +3,5 @@ class RecommendationResource < JSONAPI::Resource
   has_one :recommendable, polymorphic: true
 
   attributes :user_id, :start_date, :completed, :action,
-              :query, :field, :kind, :label, :link
+             :query, :field, :kind, :label, :link
 end

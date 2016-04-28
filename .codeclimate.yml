@@ -25,7 +25,14 @@ engines:
       Rubocop/Metrics/MethodLength:
         enabled: false
     exclude_fingerprints:
-    - a0a25fa1d29c65179c56b9f2cd661cec
+      - a0a25fa1d29c65179c56b9f2cd661cec
+      - a0a25fa1d29c65179c56b9f2cd661cec
+      - 85d5335dc803290f925fee032a5347c3
+      - 46447adca3fdb8065005068144962153
+      - e56fc61921b9cc3c72d8886950e834e1
+      - 1d962fdc4220c3c407fa2b1d52f1ebe3
+      - b50f9af6e423d5b3eb03f80ad21fcbb3
+      - 8a15cf251b3209f516650c3a4b5b0b6c
 ratings:
   paths:
   - Gemfile.lock

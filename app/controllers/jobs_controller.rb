@@ -3,10 +3,11 @@ class JobsController < ApplicationController
   wrap_parameters format: [:json]
 
   def create_from_chrome
-    company = Company.find_or_create_by(name: params[:company_name], user_id: current_user.id)
-    @job = Job.create(title: params[:title], 
-                      company_id: company.id, 
-                      application_status: 'Interested', 
+    company = Company.find_or_create_by(name: params[:company_name],
+                                        user_id: current_user.id)
+    @job = Job.create(title: params[:title],
+                      company_id: company.id,
+                      application_status: 'Interested',
                       notes: params[:notes])
 
     respond_to do |f|
@@ -17,5 +18,4 @@ class JobsController < ApplicationController
       end
     end
   end
-
 end
