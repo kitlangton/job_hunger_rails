@@ -12,7 +12,7 @@ class Company < ActiveRecord::Base
   validates :notes, length: { maximum: 500 }
   validates :interest, numericality: { only_integer: true }
   validates :website, :blog, :address, :glassdoor_website,
-                      :glassdoor_logo_link, length: { maximum: 300 }
+            :glassdoor_logo_link, length: { maximum: 300 }
 
   after_create :make_activity
   after_create :glassdoor_info
@@ -47,7 +47,7 @@ class Company < ActiveRecord::Base
   end
 
   private
-  
+
   def make_activity
     user_id = user.id
     points = 111
@@ -87,10 +87,8 @@ class Company < ActiveRecord::Base
         self.website = response['response']['employers'][0]['website']
       end
 
-      self.glassdoor_rating = response['response']['employers']
-                                      [0]['overallRating'].to_f
-      self.glassdoor_logo_link = response['response']['employers']
-                                         [0]['squareLogo']
+      self.glassdoor_rating = response['response']['employers'][0]['overallRating'].to_f
+      self.glassdoor_logo_link = response['response']['employers'][0]['squareLogo']
     end
     save
   end

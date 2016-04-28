@@ -1,3 +1,4 @@
+[![Code Climate](https://codeclimate.com/github/kitlangton/job_hunger_rails/badges/gpa.svg)](https://codeclimate.com/github/kitlangton/job_hunger_rails)
 [![Build Status](https://travis-ci.org/kitlangton/job_hunger_rails.png?branch=master)](https://travis-ci.org/kitlangton/job_hunger_rails)
 [![HitCount](https://hitt.herokuapp.com/kitlangton/job_hunger_rails.svg)](https://github.com/kitlangton/job_hunger_rails)
 

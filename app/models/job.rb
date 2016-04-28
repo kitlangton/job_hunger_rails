@@ -14,7 +14,7 @@ class Job < ActiveRecord::Base
   after_create :make_activity
 
   private
-  
+
   def set_default
     self.application_status ||= 'Interested'
   end
