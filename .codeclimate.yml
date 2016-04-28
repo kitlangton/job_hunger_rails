@@ -26,6 +26,7 @@ engines:
         enabled: false
     exclude_fingerprints:
       - a0a25fa1d29c65179c56b9f2cd661cec
+      - a0a25fa1d29c65179c56b9f2cd661cec
       - 85d5335dc803290f925fee032a5347c3
       - 46447adca3fdb8065005068144962153
       - e56fc61921b9cc3c72d8886950e834e1
