@@ -14,7 +14,8 @@ class JobsController < ApplicationController
       if @job.save
         f.json { render json: 201 }
       else
-        f.json { render json: { status: :unprocessable_entity } }
+        f.json { render :json => { :error_message => @job.errors.full_messages }, :status => :unprocessable_entity }
+
       end
     end
   end
