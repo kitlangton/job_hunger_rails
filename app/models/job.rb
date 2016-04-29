@@ -1,6 +1,8 @@
 class Job < ActiveRecord::Base
+  include Recommendable
+
   belongs_to :company
-  has_many :recommendations, as: :recommendable
+  has_one :user, through: :company
   has_many :scores, as: :scoreable
 
   STATUSES = %w(Interested Applied Rejected Interview Offer).freeze
@@ -12,6 +14,32 @@ class Job < ActiveRecord::Base
 
   before_create :set_default
   after_create :make_activity
+
+
+  def recommendable_actions
+    [
+      {
+        field: 'application_status',
+        kind: 'action',
+        link: url,
+        action: 'Submit application'
+      }
+    ]
+  end
+
+
+  def field_recommendations
+    [
+      {
+        field: 'application_status',
+        kind: 'action',
+        link: url,
+        action: 'Follow up with application',
+        target_value: 'Applied'
+      }
+    ]
+  end
+
 
   private
 
