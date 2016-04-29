@@ -26,6 +26,7 @@ module Recommendable
         query: action[:query],
         field: action[:field],
         label: action[:label],
+        callback: action[:callback],
         start_date: Date.today
       )
     end
@@ -41,7 +42,6 @@ module Recommendable
   def generate_field_recommendation
     changes.each do |change|
       field, (old_value, new_value) = change
-
       field_recommendations.select { |rec| rec[:field] == field }.each do |action|
         if action[:target_value] == new_value || old_value.nil? 
           recommendations.create!(
@@ -52,6 +52,7 @@ module Recommendable
             field: action[:field],
             label: action[:label],
             link: action[:link],
+            callback: action[:callback],
             start_date: Date.today
           )
         end

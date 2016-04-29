@@ -15,18 +15,17 @@ class Job < ActiveRecord::Base
   before_create :set_default
   after_create :make_activity
 
-
   def recommendable_actions
     [
       {
         field: 'application_status',
         kind: 'action',
         link: url,
-        action: 'Submit application'
+        action: 'Submit application',
+        callback: "update(application_status: 'Applied')"
       }
     ]
   end
-
 
   def field_recommendations
     [
@@ -39,7 +38,6 @@ class Job < ActiveRecord::Base
       }
     ]
   end
-
 
   private
 
