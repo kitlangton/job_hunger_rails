@@ -8,7 +8,7 @@ class JobsController < ApplicationController
     @job = Job.create(title: params[:title],
                       company_id: company.id,
                       application_status: 'Interested',
-                      notes: params[:notes])
+                      url: params[:url])
 
     respond_to do |f|
       if @job.save

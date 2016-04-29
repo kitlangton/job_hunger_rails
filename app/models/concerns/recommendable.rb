@@ -6,9 +6,14 @@ module Recommendable
 
     after_create :generate_recommendations
     after_update :complete_recommendations
+    after_update :generate_field_recommendation
   end
 
   def field_recommendations
+    []
+  end
+
+  def recommendable_actions
     []
   end
 
@@ -33,18 +38,24 @@ module Recommendable
     end
   end
 
-  def generate_field_recommendation(field)
-    field_recommendations.select { |rec| rec[:field] == field }.each do |action|
-      recommendations.create!(
-        action: action[:action],
-        user: user,
-        kind: action[:kind],
-        query: action[:query],
-        field: action[:field],
-        label: action[:label],
-        link: action[:link],
-        start_date: Date.today
-      )
+  def generate_field_recommendation
+    changes.each do |change|
+      field, (old_value, new_value) = change
+
+      field_recommendations.select { |rec| rec[:field] == field }.each do |action|
+        if action[:target_value] == new_value || old_value.nil? 
+          recommendations.create!(
+            action: action[:action],
+            user: user,
+            kind: action[:kind],
+            query: action[:query],
+            field: action[:field],
+            label: action[:label],
+            link: action[:link],
+            start_date: Date.today
+          )
+        end
+      end
     end
   end
 
@@ -53,7 +64,6 @@ module Recommendable
       recommendations.where(field: field, kind: 'edit').each do |recommendation|
         recommendation.update(completed: true)
       end
-      generate_field_recommendation(field)
     end
   end
 end
