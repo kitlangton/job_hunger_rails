@@ -34,4 +34,21 @@ RSpec.describe JobsController, type: :controller do
       expect { delete :destroy, id: job.id }.to change(Job, :count).by(-1)
     end
   end
+
+  describe "POST 'create_from_chrome'" do
+    let(:user) { create(:user) }
+    let(:company) { create(:company, user: user) }
+    let(:json) { JSON.parse(response.body) }
+
+    before do
+      token_sign_in(user)
+    end
+
+    it 'fails with invalid attrs' do
+      job = { title: "", company_name: "" }
+      post :create_from_chrome, job: job.to_json, format: :json
+      expect(response.status).to eq (422)
+    end
+
+  end
 end
